@@ -1,7 +1,4 @@
-/* contrib/pg_stat_statements/pg_stat_statements.sql.in */
-
--- Adjust this setting to control where the objects get created.
-SET search_path = public;
+/* contrib/pg_stat_statements/pg_stat_statements--1.0.sql */
 
 -- Register functions.
 CREATE FUNCTION pg_stat_statements_reset()
