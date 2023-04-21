@@ -4,8 +4,8 @@
 \echo Use "ALTER EXTENSION pg_stat_statements UPDATE TO '1.3'" to load this file. \quit
 
 /* First we have to remove them from the extension */
-ALTER EXTENSION pg_stat_statements DROP VIEW pg_stat_statements;
-ALTER EXTENSION pg_stat_statements DROP FUNCTION pg_stat_statements(boolean);
+ALTER EXTENSION pgext_pg_stat_statements DROP VIEW pg_stat_statements;
+ALTER EXTENSION pgext_pg_stat_statements DROP FUNCTION pg_stat_statements(boolean);
 
 /* Then we can drop them */
 DROP VIEW pg_stat_statements;

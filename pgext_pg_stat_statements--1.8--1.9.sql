@@ -18,8 +18,8 @@ CREATE VIEW pg_stat_statements_info AS
 GRANT SELECT ON pg_stat_statements_info TO PUBLIC;
 
 /* First we have to remove them from the extension */
-ALTER EXTENSION pg_stat_statements DROP VIEW pg_stat_statements;
-ALTER EXTENSION pg_stat_statements DROP FUNCTION pg_stat_statements(boolean);
+ALTER EXTENSION pgext_pg_stat_statements DROP VIEW pg_stat_statements;
+ALTER EXTENSION pgext_pg_stat_statements DROP FUNCTION pg_stat_statements(boolean);
 
 /* Then we can drop them */
 DROP VIEW pg_stat_statements;
