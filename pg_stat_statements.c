@@ -42,6 +42,7 @@
  *-------------------------------------------------------------------------
  */
 #include "postgres.h"
+#include "pgext.h"
 
 #include <math.h>
 #include <sys/stat.h>
