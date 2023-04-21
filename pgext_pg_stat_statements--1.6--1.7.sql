@@ -4,7 +4,7 @@
 \echo Use "ALTER EXTENSION pg_stat_statements UPDATE TO '1.7'" to load this file. \quit
 
 /* First we have to remove them from the extension */
-ALTER EXTENSION pg_stat_statements DROP FUNCTION pg_stat_statements_reset();
+ALTER EXTENSION pgext_pg_stat_statements DROP FUNCTION pg_stat_statements_reset();
 
 /* Then we can drop them */
 DROP FUNCTION pg_stat_statements_reset();
