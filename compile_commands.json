@@ -1,0 +1,37 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wmissing-prototypes",
+      "-Wpointer-arith",
+      "-Wdeclaration-after-statement",
+      "-Werror=vla",
+      "-Werror=unguarded-availability-new",
+      "-Wendif-labels",
+      "-Wmissing-format-attribute",
+      "-Wcast-function-type",
+      "-Wformat-security",
+      "-fno-strict-aliasing",
+      "-fwrapv",
+      "-Wno-unused-command-line-argument",
+      "-Wno-compound-token-split-by-macro",
+      "-g",
+      "-O2",
+      "-I.",
+      "-I./",
+      "-I/Users/liangyc/.pgx/15.2/pgx-install/include/postgresql/server",
+      "-I/Users/liangyc/.pgx/15.2/pgx-install/include/postgresql/internal",
+      "-isysroot",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk",
+      "-I/usr/local/opt/openssl@3/include",
+      "-c",
+      "-o",
+      "pgext_pg_stat_statements.o",
+      "pgext_pg_stat_statements.c"
+    ],
+    "directory": "/Users/liangyc/repo/cmu/pgext_pg_stat_statements/pg_stat_statements",
+    "file": "/Users/liangyc/repo/cmu/pgext_pg_stat_statements/pg_stat_statements/pgext_pg_stat_statements.c",
+    "output": "/Users/liangyc/repo/cmu/pgext_pg_stat_statements/pg_stat_statements/pgext_pg_stat_statements.o"
+  }
+]
