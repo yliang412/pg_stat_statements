@@ -42,7 +42,6 @@
  *-------------------------------------------------------------------------
  */
 #include "postgres.h"
-#include "pgext.h"
 
 #include <math.h>
 #include <sys/stat.h>
@@ -74,7 +73,11 @@
 #include "utils/memutils.h"
 #include "utils/timestamp.h"
 
+#include "pgextmgr.h"
+
 PG_MODULE_MAGIC;
+
+static struct PgExtApi *api;
 
 /* Location of permanent stats file (valid when database is shut down) */
 #define PGSS_DUMP_FILE	PGSTAT_STAT_PERMANENT_DIRECTORY "/pg_stat_statements.stat"
@@ -374,6 +377,7 @@ static int	comp_location(const void *a, const void *b);
 void
 _PG_init(void)
 {
+	api = __pgext_before_init("pgext_pg_stat_statements");
 	/*
 	 * In order to create our shared memory area, we have to be loaded via
 	 * shared_preload_libraries.  If not, fall out without hooking into any of
@@ -475,6 +479,8 @@ _PG_init(void)
 	ExecutorEnd_hook = pgss_ExecutorEnd;
 	prev_ProcessUtility = ProcessUtility_hook;
 	ProcessUtility_hook = pgss_ProcessUtility;
+
+	__pgext_after_init();
 }
 
 /*
