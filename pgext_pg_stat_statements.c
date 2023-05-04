@@ -398,7 +398,7 @@ _PG_init(void)
 	/*
 	 * Define (or redefine) custom GUC variables.
 	 */
-	DefineCustomIntVariable("pg_stat_statements.max",
+	DefineCustomIntVariable("pgext_pg_stat_statements.max",
 							"Sets the maximum number of statements tracked by pg_stat_statements.",
 							NULL,
 							&pgss_max,
@@ -411,7 +411,7 @@ _PG_init(void)
 							NULL,
 							NULL);
 
-	DefineCustomEnumVariable("pg_stat_statements.track",
+	DefineCustomEnumVariable("pgext_pg_stat_statements.track",
 							 "Selects which statements are tracked by pg_stat_statements.",
 							 NULL,
 							 &pgss_track,
@@ -423,7 +423,7 @@ _PG_init(void)
 							 NULL,
 							 NULL);
 
-	DefineCustomBoolVariable("pg_stat_statements.track_utility",
+	DefineCustomBoolVariable("pgext_pg_stat_statements.track_utility",
 							 "Selects whether utility commands are tracked by pg_stat_statements.",
 							 NULL,
 							 &pgss_track_utility,
@@ -434,7 +434,7 @@ _PG_init(void)
 							 NULL,
 							 NULL);
 
-	DefineCustomBoolVariable("pg_stat_statements.track_planning",
+	DefineCustomBoolVariable("pgext_pg_stat_statements.track_planning",
 							 "Selects whether planning duration is tracked by pg_stat_statements.",
 							 NULL,
 							 &pgss_track_planning,
@@ -445,7 +445,7 @@ _PG_init(void)
 							 NULL,
 							 NULL);
 
-	DefineCustomBoolVariable("pg_stat_statements.save",
+	DefineCustomBoolVariable("pgext_pg_stat_statements.save",
 							 "Save pg_stat_statements statistics across server shutdowns.",
 							 NULL,
 							 &pgss_save,
@@ -494,7 +494,7 @@ pgss_shmem_request(void)
 		prev_shmem_request_hook();
 
 	RequestAddinShmemSpace(pgss_memsize());
-	RequestNamedLWLockTranche("pg_stat_statements", 1);
+	RequestNamedLWLockTranche("pgext_pg_stat_statements", 1);
 }
 
 /*
@@ -529,14 +529,14 @@ pgss_shmem_startup(void)
 	 */
 	LWLockAcquire(AddinShmemInitLock, LW_EXCLUSIVE);
 
-	pgss = ShmemInitStruct("pg_stat_statements",
+	pgss = ShmemInitStruct("pgext_pg_stat_statements",
 						   sizeof(pgssSharedState),
 						   &found);
 
 	if (!found)
 	{
 		/* First time through ... */
-		pgss->lock = &(GetNamedLWLockTranche("pg_stat_statements"))->lock;
+		pgss->lock = &(GetNamedLWLockTranche("pgext_pg_stat_statements"))->lock;
 		pgss->cur_median_usage = ASSUMED_MEDIAN_INIT;
 		pgss->mean_query_len = ASSUMED_LENGTH_INIT;
 		SpinLockInit(&pgss->mutex);
